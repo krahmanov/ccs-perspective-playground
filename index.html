@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="main.css" />
+		<title>CSS3 Perspective Playground</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>CSS3 Perspective Playground</h2>
+			<main>
+				<section class="settings">
+					<div class="settings-container">
+						<label>perspective: {{ perspective }}px</label>
+						<input v-model="perspective" type="range" min="0" max="999" />
+
+						<label>rotateX: {{rotateX}}deg</label>
+						<input v-model="rotateX" type="range" min="-180" max="180" />
+
+						<label>rotateY: {{rotateY}}deg</label>
+						<input v-model="rotateY" type="range" min="-180" max="180" />
+
+						<label>rotateZ: {{rotateZ}}deg</label>
+						<input v-model="rotateZ" type="range" min="-180" max="180" />
+
+						<button @click.prevent="reset" >Reset</button>
+						<button @click.prevent="copy">Copy</button>
+					</div>
+				</section>
+				<section class="output">
+					<div class="box-container">
+						<div :style="box" class="box"></div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<css-doodle>
+			:doodle{ @grid: 1x3 /100vmax; position: absolute; top:0;left:0; z-index:
+			0; } @size: 100% 150%; position: absolute; background: @m(100, (
+			linear-gradient(transparent, @p( #FFFDe1@repeat(2, @p([0-9a-f])),
+			#FB3569@repeat(2, @p([0-9a-f])) )) @r(0%, 100%) @r(0%, 100%) / @r(1px)
+			@r(23vmin) no-repeat )); will-change: transform; animation: f 50s linear
+			calc(-50s / @size() * @i()) infinite; @keyframes f { from { transform:
+			translateY(-100%)} to {transform: translateY(100%)} }
+		</css-doodle>
+
+		<script src="https://unpkg.com/css-doodle@0.21.6/css-doodle.min.js"></script>
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
